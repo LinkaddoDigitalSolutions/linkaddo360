@@ -1,44 +1,459 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Linkaddo360</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: #0f0f0f;
-      color: #fff;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      font-size: 40px;
-    }
-    p {
-      font-size: 18px;
-      margin: 20px 0;
-    }
-    .btn {
-      background: #00ff88;
-      color: #000;
-      padding: 15px 30px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkaddo360 | Growth Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #00ffa3;
+            --primary-glow: rgba(0, 255, 163, 0.3);
+            --bg: #030303;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Orbs Decorativos */
+        .orb {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .orb-1 { top: -100px; right: -100px; }
+        .orb-2 { bottom: 20%; left: -100px; opacity: 0.5; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Premium */
+        nav {
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(3, 3, 3, 0.7);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            background: rgba(0, 255, 163, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid var(--primary-glow);
+            display: inline-block;
+            margin-bottom: 24px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-fill-color: transparent;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        /* Botão Magnético */
+        .btn-main {
+            background: var(--primary);
+            color: #000;
+            padding: 20px 40px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 18px;
+            display: inline-block;
+            box-shadow: 0 0 40px var(--primary-glow);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 60px var(--primary);
+        }
+
+        /* Grid de Serviços Estilo Bento Box */
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 { font-size: 3rem; letter-spacing: -2px; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+            margin-bottom: 120px;
+        }
+
+        .service-card {
+            grid-column: span 4;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 24px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card i {
+            background: var(--primary);
+            padding: 12px;
+            border-radius: 12px;
+            color: #000;
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .service-card p { color: var(--text-dim); }
+
+        /* Card Destaque (Largo) */
+        .card-large { grid-column: span 6; }
+
+        /* Benefícios Modernos */
+        .benefits-strip {
+            display: flex;
+            justify-content: space-between;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
+            margin-bottom: 120px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .benefit-unit { display: flex; align-items: center; gap: 15px; }
+        .benefit-unit i { color: var(--primary); }
+
+        /* Planos Premium */
+        .pricing-section { padding: 100px 0; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background: #0a0a0a;
+            padding: 60px 40px;
+            border-radius: 32px;
+            border: 1px solid var(--card-border);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .plan-card.featured {
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 40px rgba(0, 255, 163, 0.1);
+            transform: scale(1.05);
+        }
+
+        .price { font-size: 4rem; font-weight: 800; margin: 30px 0; letter-spacing: -2px; }
+        .price span { font-size: 1rem; color: var(--text-dim); letter-spacing: 0; }
+
+        .feature-list { list-style: none; margin-bottom: 40px; }
+        .feature-list li { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            margin-bottom: 16px;
+            color: var(--text-dim);
+        }
+
+        /* Social Proof */
+        .proof {
+            background: linear-gradient(to bottom, transparent, #0a0a0a, transparent);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        /* CTA WhatsApp Fluido */
+        .whatsapp-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #00b372 100%);
+            padding: 80px;
+            border-radius: 40px;
+            text-align: center;
+            color: #000;
+            margin: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-cta h2 { font-size: 3rem; margin-bottom: 20px; letter-spacing: -2px; }
+
+        /* Animações */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s all ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .service-card, .card-large { grid-column: span 12; }
+            .hero h1 { font-size: 3.5rem; }
+            .whatsapp-cta { padding: 40px 20px; }
+        }
+    </style>
 </head>
 <body>
 
-<h1>🚀 Linkaddo360</h1>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-<p>Cresça suas redes sociais todos os meses com conteúdo + estratégia + engajamento.</p>
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="logo">LINKADDO360</div>
+            <div style="display: flex; gap: 30px; align-items: center;">
+                <a href="#servicos" style="font-size: 14px; font-weight: 600; color: var(--text-dim);">Serviços</a>
+                <a href="#planos" class="btn-main" style="padding: 10px 24px; font-size: 14px; box-shadow: none;">Começar</a>
+            </div>
+        </div>
+    </nav>
 
-<p>🔥 Ideias virais<br>
-🔥 Legendas prontas<br>
-🔥 Crescimento automático</p>
+    <section class="hero">
+        <div class="container">
+            <div class="badge">✨ Inteligência em Crescimento Social</div>
+            <h1>A nova era do seu<br>Instagram começa aqui.</h1>
+            <p>Algoritmos mudam, nossa estratégia não. Alcance milhares de pessoas e transforme seu engajamento com a Linkaddo360.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#planos" class="btn-main">Impulsionar meu perfil</a>
+                <a href="#" class="btn-secondary" style="color: white; border: 1px solid var(--card-border); padding: 20px 40px; border-radius: 12px; font-weight: 700;">Ver Resultados</a>
+            </div>
+        </div>
+    </section>
 
-<a class="btn" href="#">QUERO CRESCER AGORA</a>
+    <div class="container">
+        <!-- Benefícios Strip -->
+        <div class="benefits-strip reveal">
+            <div class="benefit-unit">
+                <i data-lucide="shield-check"></i>
+                <span>Segurança de Elite</span>
+            </div>
+            <div class="benefit-unit">
+                <i data-lucide="zap"></i>
+                <span>Ativação Instantânea</span>
+            </div>
+            <div class="benefit-unit">
+                <i data-lucide="users"></i>
+                <span>Perfis Verificados</span>
+            </div>
+            <div class="benefit-unit">
+                <i data-lucide="headset"></i>
+                <span>Suporte Humano</span>
+            </div>
+        </div>
 
+        <!-- Serviços Grid -->
+        <section id="servicos">
+            <div class="section-header reveal">
+                <h2>Ecossistema de Explosão</h2>
+                <p style="color: var(--text-dim)">Ferramentas integradas para dominar a rede social mais usada do mundo.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <i data-lucide="trending-up"></i>
+                    <h3>Seguidores Reais</h3>
+                    <p>Audiência brasileira e segmentada para aumentar sua autoridade imediatamente.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="heart"></i>
+                    <h3>Curtidas High-End</h3>
+                    <p>Sistema de likes inteligentes que seguem o fluxo orgânico do algoritmo.</p>
+                </div>
+                <div class="service-card reveal">
+                    <i data-lucide="play"></i>
+                    <h3>Viralize Reels</h3>
+                    <p>Visualizações de alta retenção para colocar seus vídeos no "Explorar".</p>
+                </div>
+                <div class="service-card card-large reveal">
+                    <i data-lucide="message-circle"></i>
+                    <h3>Comentários Narrativos</h3>
+                    <p>Não aceite apenas emojis. Tenha comentários reais, personalizados e que geram conversas reais no seu perfil.</p>
+                </div>
+                <div class="service-card card-large reveal">
+                    <i data-lucide="share-2"></i>
+                    <h3>Distribuição Viral</h3>
+                    <p>Compartilhamentos e salvamentos que sinalizam ao Instagram que seu conteúdo é extremamente relevante.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section" id="planos">
+            <div class="section-header reveal">
+                <h2>Planos de Aceleração</h2>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="plan-card reveal">
+                    <span style="color: var(--text-dim)">Essential</span>
+                    <div class="price">R$ 49<span>/mês</span></div>
+                    <ul class="feature-list">
+                        <li><i data-lucide="check" size="18"></i> 500 Seguidores Reais</li>
+                        <li><i data-lucide="check" size="18"></i> 200 Likes/Post</li>
+                        <li><i data-lucide="check" size="18"></i> Entrega Gradual</li>
+                        <li><i data-lucide="check" size="18"></i> Suporte Padrão</li>
+                    </ul>
+                    <a href="#" class="btn-main" style="width: 100%; text-align: center; background: transparent; border: 1px solid var(--primary); color: var(--primary);">Assinar Agora</a>
+                </div>
+
+                <div class="plan-card featured reveal">
+                    <span style="color: var(--primary)">Expert Choice</span>
+                    <div class="price">R$ 97<span>/mês</span></div>
+                    <ul class="feature-list">
+                        <li><i data-lucide="check" size="18"></i> 2.500 Seguidores Reais</li>
+                        <li><i data-lucide="check" size="18"></i> 1.000 Likes/Post</li>
+                        <li><i data-lucide="check" size="18"></i> Reels Boost (5k views)</li>
+                        <li><i data-lucide="check" size="18"></i> Suporte VIP 24h</li>
+                        <li><i data-lucide="check" size="18"></i> Reposição Garantida</li>
+                    </ul>
+                    <a href="#" class="btn-main" style="width: 100%; text-align: center;">Assinar Agora</a>
+                </div>
+
+                <div class="plan-card reveal">
+                    <span style="color: var(--text-dim)">Business</span>
+                    <div class="price">R$ 197<span>/mês</span></div>
+                    <ul class="feature-list">
+                        <li><i data-lucide="check" size="18"></i> 10.000 Seguidores Reais</li>
+                        <li><i data-lucide="check" size="18"></i> Engajamento Total</li>
+                        <li><i data-lucide="check" size="18"></i> Comentários Personalizados</li>
+                        <li><i data-lucide="check" size="18"></i> Gerente de Conta</li>
+                    </ul>
+                    <a href="#" class="btn-main" style="width: 100%; text-align: center; background: transparent; border: 1px solid var(--primary); color: var(--primary);">Assinar Agora</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA WhatsApp -->
+        <div class="whatsapp-cta reveal">
+            <div style="position: relative; z-index: 1;">
+                <h2>Precisa de um plano personalizado?</h2>
+                <p style="font-weight: 600; margin-bottom: 30px;">Nossos consultores de growth estão online agora.</p>
+                <a href="https://wa.me/seunumeroporto" class="btn-main" style="background: #000; color: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                    Chamar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="padding: 60px 0; border-top: 1px solid var(--card-border); text-align: center; color: var(--text-dim);">
+        <div class="logo" style="margin-bottom: 20px;">LINKADDO360</div>
+        <p>&copy; 2024 Linkaddo360 Growth Intelligence. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Ícones
+        lucide.createIcons();
+
+        // Reveal Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Efeito de movimento no Mouse nas Orbs (Parallax Suave)
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach(orb => {
+                orb.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
