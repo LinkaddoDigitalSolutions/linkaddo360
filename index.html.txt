@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Linkaddo360</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f0f0f;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 40px;
+    }
+    p {
+      font-size: 18px;
+      margin: 20px 0;
+    }
+    .btn {
+      background: #00ff88;
+      color: #000;
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🚀 Linkaddo360</h1>
+
+<p>Cresça suas redes sociais todos os meses com conteúdo + estratégia + engajamento.</p>
+
+<p>🔥 Ideias virais<br>
+🔥 Legendas prontas<br>
+🔥 Crescimento automático</p>
+
+<a class="btn" href="#">QUERO CRESCER AGORA</a>
+
+</body>
+</html>
